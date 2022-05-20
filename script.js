@@ -22,10 +22,21 @@ function divide(a, b) {
 
 function operate(a, operator, b) {
 	const functions = [add, subtract, multiply, divide];
+	let answer;
 
 	for (let i = 0; i < operators.length; i++) {
-		if (operators[i] === operator) return functions[i](a, b);
+		if (operators[i] === operator) {
+			answer = functions[i](a, b);
+		}
 	}
+	if (answer.toString().includes(".")) {
+		let arr = answer.toString().split(".");
+		if (arr[1].length > 5) {
+			arr[1] = arr[1].substring(0, 5);
+			return arr.join(".");
+		}
+	}
+	return answer;
 }
 
 const display = document.querySelector(".display");
@@ -44,7 +55,6 @@ function appendOperator(event) {
 }
 
 function calculatePart(arr, operand) {
-	console.log("here");
 	const currentIndex = arr.indexOf(operand);
 	const tempArr = arr.splice(currentIndex - 1, 3);
 	arr.splice(currentIndex - 1, 0, operate(...tempArr));
