@@ -14,7 +14,7 @@ function divide(a, b) {
 	return a / b;
 }
 
-function operate(operator, a, b) {
+function operate(a, operator, b) {
 	const operators = ["+", "-", "*", "/"];
 	const functions = [add, subtract, multiply, divide];
 
@@ -25,9 +25,24 @@ function operate(operator, a, b) {
 
 const display = document.querySelector(".display");
 const digits = document.querySelectorAll(".digit");
+const operands = document.querySelectorAll(".operand");
+const equalSign = document.querySelector(".equals");
 
 function modifyDisplay(event) {
 	display.textContent += event.target.textContent;
 }
 
+function appendOperator(event) {
+	display.textContent += ` ${event.target.textContent} `;
+}
+
+function calculate(event) {
+	const arr = display.textContent.split(" ");
+	display.textContent = operate(...arr);
+}
+
 digits.forEach(digit => digit.addEventListener("click", modifyDisplay))
+
+operands.forEach(operand => operand.addEventListener("click", appendOperator));
+
+equalSign.addEventListener("click", calculate);
