@@ -13,6 +13,10 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+	if (b == 0) {
+		alert("Division by 0 is not allowed");
+		return a;
+	}
 	return parseInt(a) / parseInt(b);
 }
 
