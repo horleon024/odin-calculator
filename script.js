@@ -23,4 +23,11 @@ function operate(operator, a, b) {
 	}
 }
 
-console.log(operate("*", 50, 10));
+const display = document.querySelector(".display");
+const digits = document.querySelectorAll(".digit");
+
+function modifyDisplay(event) {
+	display.textContent += event.target.textContent;
+}
+
+digits.forEach(digit => digit.addEventListener("click", modifyDisplay))
