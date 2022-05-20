@@ -1,21 +1,22 @@
+const operators = ["+", "-", "*", "/"];
+
 function add(a, b) {
-	return a + b;
+	return parseInt(a) + parseInt(b);
 }
 
 function subtract(a, b) {
-	return a - b;
+	return parseInt(a) - parseInt(b);
 }
 
 function multiply(a, b) {
-	return a * b;
+	return parseInt(a) * parseInt(b);
 }
 
 function divide(a, b) {
-	return a / b;
+	return parseInt(a) / parseInt(b);
 }
 
 function operate(a, operator, b) {
-	const operators = ["+", "-", "*", "/"];
 	const functions = [add, subtract, multiply, divide];
 
 	for (let i = 0; i < operators.length; i++) {
@@ -30,20 +31,31 @@ const equalSign = document.querySelector(".equals");
 const clearButton = document.querySelector(".clear");
 
 function modifyDisplay(event) {
-	display.textContent += event.target.textContent;
+	if (display.textContent === "0") display.textContent = event.target.textContent;
+	else display.textContent += event.target.textContent;
 }
 
 function appendOperator(event) {
 	display.textContent += ` ${event.target.textContent} `;
 }
 
+function calculatePart(arr, operand) {
+	const currentIndex = arr.indexOf(operand);
+	const tempArr = arr.splice(currentIndex - 1, 3);
+	arr.splice(currentIndex - 1, 0, operate(...tempArr));
+	return arr;
+}
+
 function calculate(event) {
-	const arr = display.textContent.split(" ");
-	display.textContent = operate(...arr);
+	let arr = display.textContent.split(" ");
+	for (let i = 3; i >= 0; i--) {
+		while (arr.includes(operators[i])) arr = calculatePart(arr, operators[i]);
+	}
+	display.textContent = arr[0];
 }
 
 function clearDisplay(event) {
-	display.textContent = "";
+	display.textContent = "0";
 }
 
 digits.forEach(digit => digit.addEventListener("click", modifyDisplay))
