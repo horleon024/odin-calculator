@@ -1,0 +1,52 @@
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.container {
+	margin-top: 20%;
+	background-color: bisque;
+	border: 4px solid brown;
+	border-radius: 6px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.display {
+	background-color: lightgray;
+	border:2px solid slategray;
+	text-align: left;
+	width: 90%;
+	padding: 3px 0px;
+	margin: 10px 5px;
+	font-size: 24px;
+}
+
+button {
+	font-size: 24px;
+	margin: 3px;
+}
+
+.clear {
+	background-color: red;
+	width: 75px;
+}
+
+.operand {
+	width: 34px;
+
+}
+
+.row {
+	width: 250px;
+	display: flex;
+	justify-content: center;
+}
+
+.equals {
+	width: 58%;
+	background-color: green;
+}
