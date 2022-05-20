@@ -40,6 +40,7 @@ function appendOperator(event) {
 }
 
 function calculatePart(arr, operand) {
+	console.log("here");
 	const currentIndex = arr.indexOf(operand);
 	const tempArr = arr.splice(currentIndex - 1, 3);
 	arr.splice(currentIndex - 1, 0, operate(...tempArr));
@@ -48,8 +49,11 @@ function calculatePart(arr, operand) {
 
 function calculate(event) {
 	let arr = display.textContent.split(" ");
-	for (let i = 3; i >= 0; i--) {
-		while (arr.includes(operators[i])) arr = calculatePart(arr, operators[i]);
+	if (arr[2] === "") display.textContent = arr[0]
+	else {
+		for (let i = 3; i >= 0; i--) {
+			while (arr.includes(operators[i])) arr = calculatePart(arr, operators[i]);
+		}
 	}
 	display.textContent = arr[0];
 }
